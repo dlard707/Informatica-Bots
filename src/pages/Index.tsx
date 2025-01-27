@@ -9,14 +9,22 @@ interface Post {
   content: string;
   image?: string;
   link?: string;
+  date: string; // Added date field to match BlogPostProps
 }
 
 const Index = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [isCreating, setIsCreating] = useState(false);
 
-  const handleCreatePost = (newPost: Omit<Post, "id">) => {
-    setPosts([{ ...newPost, id: Date.now() }, ...posts]);
+  const handleCreatePost = (newPost: Omit<Post, "id" | "date">) => {
+    setPosts([
+      { 
+        ...newPost, 
+        id: Date.now(),
+        date: new Date().toLocaleDateString() // Add current date to new posts
+      }, 
+      ...posts
+    ]);
     setIsCreating(false);
   };
 
