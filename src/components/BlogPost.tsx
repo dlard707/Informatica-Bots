@@ -5,13 +5,17 @@ interface BlogPostProps {
   content: string;
   image?: string;
   link?: string;
+  date: string;
 }
 
-const BlogPost = ({ title, content, image, link }: BlogPostProps) => {
+const BlogPost = ({ title, content, image, link, date }: BlogPostProps) => {
   return (
     <Card className="w-full mb-6 hover:shadow-lg transition-shadow">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold">{title}</CardTitle>
+        <div className="flex justify-between items-center">
+          <CardTitle className="text-2xl font-bold">{title}</CardTitle>
+          <span className="text-sm text-gray-500">{date}</span>
+        </div>
       </CardHeader>
       <CardContent>
         {image && (
